@@ -23,4 +23,9 @@ module RandomData
     letters.shuffle!
     letters[0,rand(3..8)].join
   end
+
+  def self.random_price
+    price = rand(12..100)
+    return price
+  end
 end
