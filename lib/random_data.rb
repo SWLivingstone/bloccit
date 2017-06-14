@@ -1,4 +1,9 @@
 module RandomData
+
+  def self.random_number
+    rand(4..20)
+  end
+
   def self.random_paragraph
     sentences = []
     rand(4..6).times do
