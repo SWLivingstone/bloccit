@@ -35,5 +35,13 @@ RSpec.describe User, type: :model do
       expect(user_with_invalid_email).to_not be_valid
     end
 
+  describe "Name format" do
+    let(:user_name1) {User.create!(name: "steve buscemi", password: "dfjdasfldjf", email: "stevo@buscemi.net")}
+
+    it "should format the user name" do
+      expect(user_name1.name).to eq("Steve Buscemi")
+    end
+  end
+
   end
 end
