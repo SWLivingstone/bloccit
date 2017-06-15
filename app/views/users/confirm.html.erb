@@ -1,0 +1,13 @@
+<br />
+<h1>Sign Up Confermation</h1>
+<h3>Are you sure these values are correct?</h3>
+<div class="confirm">
+  <p class="confirm-text">
+    <%= "Email: #{@user.email}" %>
+  </p>
+  <p class="confirm-text">
+    <%= "Name: #{@user.name}" %>
+  </p>
+</div>
+<%= link_to "No", {method: "get", action: "new", controller: "users"}, class: "btn btn-danger" %>
+<%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
