@@ -3,6 +3,14 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
 
+  def self.ordered_by_title
+    order('title')
+  end
+
+  def self.ordered_by_reverse_created_at
+    order('created_at')
+  end
+
   default_scope { order('created_at DESC')}
 
   validates :title, length: { minimum: 5 }, presence: true
