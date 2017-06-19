@@ -26,6 +26,10 @@ RSpec.describe Post, type: :model do
     it "has title and body attributes" do
       expect(post).to have_attributes(title: title, body: body, user: user)
     end
+
+    it "has one up vote from the user who created post" do
+      expect(post.points).to eq 1
+    end
   end
 
   describe "voting" do
