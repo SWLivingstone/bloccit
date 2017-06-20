@@ -3,11 +3,11 @@ include SessionsHelper
 
 RSpec.describe PostsController, type: :controller do
 
-  let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password")}
-  let(:not_my_user) { User.create!(name: "Bloccit2 User2", email: "user2@bloccit.com", password: "password")}
-  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
-  let(:not_my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: not_my_user) }
+  let(:my_user) { create(:user) }
+  let(:not_my_user) { create(:user) }
+  let(:my_topic) { create(:topic) }
+  let(:my_post) { create(:post, topic: my_topic, user: my_user) }
+  let(:not_my_post) { create(:post) }
 
   context "guest user" do
     describe "GET show" do
@@ -162,8 +162,8 @@ RSpec.describe PostsController, type: :controller do
       new_title = RandomData.random_sentence
       new_body = RandomData.random_paragraph
 
-      put :update, topic_id: my_topic.id, id: not_my_post.id, post: {title: new_title, body: new_body}
-      expect(response).to redirect_to [my_topic, not_my_post]
+      put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
+      expect(response).to redirect_to [my_topic, my_post]
     end
   end
 
@@ -175,7 +175,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it "redirects to topic show" do
-      delete :destroy, topic_id: my_topic.id, id: not_my_post.id
+      delete :destroy, topic_id: my_topic.id, id: my_post.id
       expect(response).to redirect_to my_topic
     end
   end

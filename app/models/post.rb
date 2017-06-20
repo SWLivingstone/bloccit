@@ -4,11 +4,12 @@ class Post < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   belongs_to :topic
   belongs_to :user
-  after_create :create_vote
-  after_create :favorite_post
+  # after_create :create_vote
+  # after_create :favorite_post
   after_create :send_new_post_email
 
   default_scope { order('rank DESC')}
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
