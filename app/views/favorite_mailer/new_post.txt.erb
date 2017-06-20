@@ -1,0 +1,11 @@
+Your new post called "<%= @post.title %>"
+ <%= "=" * (@post.title.length + 12) %>
+
+ By: <%= @post.user.name %>
+
+ <%= @post.body %>
+
+ You have created a new post.  You will now
+ receive an email whenever someone comments on it.
+
+ Visit online at: <%= topic_post_url(@post.topic, @post) %>

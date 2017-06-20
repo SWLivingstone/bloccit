@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
   after_create :create_vote
+  after_create :favorite_post
+  after_create :send_new_post_email
 
   default_scope { order('rank DESC')}
 
@@ -35,5 +37,13 @@ class Post < ActiveRecord::Base
 
   def create_vote
     user.votes.create(post: self, value: 1)
+  end
+
+  def favorite_post
+    user.favorites.create!(post: self)
+  end
+
+  def send_new_post_email
+    FavoriteMailer.new_post(user, self, self.comments.first).deliver_now
   end
 end
