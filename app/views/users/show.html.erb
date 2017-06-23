@@ -18,11 +18,32 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-6">
+    <% if has_created_post? %>
+      <h2>Posts</h2>
+      <% @user.posts.each do |post| %>
+        <%= render 'posts/display_post', :post => post %>
+      <% end %>
+    <% else %>
+      <h2>You have not created any posts</h2>
+    <% end %>
 
-<h2>Posts</h2>
-<% @user.posts.each do |post| %>
-  <%= render 'posts/display_post', :post => post %>
-<% end %>
-
-<h2>Comments</h2>
-<%= render @user.comments %>
+    <% if has_made_comment? %>
+      <h2>Comments</h2>
+      <%= render @user.comments %>
+    <% else %>
+      <h2>You have not made any comments</h2>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <% if has_favorite_posts? %>
+      <h2>Favorited Posts</h2>
+      <% @user.favorites.each do |favorite| %>
+        <%= render 'favorites/favorite_posts', :favorite => favorite %>
+      <% end %>
+    <% else %>
+      <h2>You have not favorited any posts</h2>
+    <% end %>
+  </div>
+</div>
