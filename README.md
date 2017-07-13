@@ -1,6 +1,13 @@
-## Bloccit: a Reddit replica to teach the fundamentals of web development and Rails.
+## Bloccit: a Reddit replica to learn the fundamentals of web development and Rails.
 
-Made with my mentor at [Bloc](http://bloc.io).
+##Getting started
 
+##Motopedia!
 
-Ruby Version 2.4.1p111
+1. Clone repo
+
+2. run `bundle install`
+
+3. run `rails s`
+
+4. Open in web browser (http://localhost:3000)
