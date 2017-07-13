@@ -1,8 +1,6 @@
 ## Bloccit: a Reddit replica to learn the fundamentals of web development and Rails.
 
-##Getting started
-
-##Motopedia!
+## Getting started
 
 1. Clone repo
 
